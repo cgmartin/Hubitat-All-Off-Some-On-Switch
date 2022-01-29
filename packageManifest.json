@@ -1,5 +1,5 @@
 {
-    "packageName": "All Off Some On Switches",
+    "packageName": "All Off Some On Switch",
     "minimumHEVersion": "2.2.1",
     "author": "Christopher Martin",
     "version": "1.0",
@@ -11,7 +11,7 @@
     "apps": [
         {
             "id": "a3d1ecfb-70c8-43e6-9fe3-97e9392ed565",
-            "name": "All Off Some On Switches",
+            "name": "All Off Some On Switch",
             "namespace": "cgmartin",
             "location": "https://raw.githubusercontent.com/cgmartin/Hubitat-All-Off-Some-On-Switch/master/AllOffSomeOnSwitchAppParent.groovy",
             "required": true,
@@ -19,7 +19,7 @@
         },
         {
             "id": "dff931a8-72f2-446d-b1a9-6ddbb4f525f9",
-            "name": "All Off Some On Switch",
+            "name": "All Off Some On Switch Child",
             "namespace": "cgmartin",
             "location": "https://raw.githubusercontent.com/cgmartin/Hubitat-All-Off-Some-On-Switch/master/AllOffSomeOnSwitchAppChild.groovy",
             "required": true,

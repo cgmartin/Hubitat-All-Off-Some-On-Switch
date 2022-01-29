@@ -18,10 +18,10 @@ import groovy.transform.Field
 @Field static String APP_INSTALLED_STATE_COMPLETE = 'COMPLETE'
 
 definition(
-    name: 'All Off Some On Switches',
+    name: 'All Off Some On Switch',
     namespace: 'cgmartin',
     author: 'Christopher Martin',
-    description: 'Creates a virtual switch to turn off an entire group of devices, but will only turn on some.',
+    description: 'Creates a virtual switch to turn off an entire group of devices (but will only turn on some).',
     category: 'Convenience',
     iconUrl: '',
     iconX2Url: '',
@@ -79,8 +79,8 @@ def mainPage() {
                 app(
                     name: 'anyOpenApp',
                     namespace: app.namespace,
-                    appName: 'All Off Some On Switch',
-                    title: 'Add a new All Off Some On Switch',
+                    appName: 'All Off Some On Switch Child',
+                    title: "Add a new 'All Off Some On Switch'",
                     multiple: true
                 )
             }

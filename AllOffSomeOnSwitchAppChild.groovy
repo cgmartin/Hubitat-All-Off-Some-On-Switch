@@ -1,5 +1,5 @@
 /**
- * Some On All Off Switch (Child App)
+ * All Off Some On Switch (Child App)
  *
  * Copyright 2022 Christopher Martin
  *
@@ -20,10 +20,10 @@ import groovy.transform.Field
 
 definition(
     namespace: 'cgmartin',
-    name: 'All Off Some On Switch',
-    parent: 'cgmartin:All Off Some On Switches',
+    name: 'All Off Some On Switch Child',
+    parent: 'cgmartin:All Off Some On Switch',
     author: 'Christopher Martin',
-    description: 'Child app of Some On All Off Switches.',
+    description: "Child app implementation of the 'All Off Some On Switch' parent app.",
     category: 'Convenience',
     iconUrl: '',
     iconX2Url: '',
@@ -41,7 +41,7 @@ def pageStart() {
             input(
                 name: 'appName',
                 type: 'text',
-                title: 'Name this instance of the Some On/All Off Switch',
+                title: 'Name the virtual switch device',
                 submitOnChange: true
             )
             if (appName) {
@@ -106,7 +106,7 @@ def installed() {
         "AOSOS_${app.id}",
         null,
         [
-            name: 'Some On All Off Virtual Switch',
+            name: 'All Off Some On Virtual Switch',
             label: app.label,
             completedSetup: true,
             isComponent: true
@@ -132,7 +132,7 @@ def initialize() {
     log.info "There are ${childDevices.size()} child devices"
 
     def virtualSwitch = getChildDevice("AOSOS_${app.id}")
-    app.updateLabel(virtualSwitch.displayName)
+    app.updateLabel(virtualSwitch.displayName) // Use the device name
 
     subscribe(allOffSwitches, EVENT_TYPE_SWITCH, devicesChangeHandler)
     devicesChangeHandler(null) // sync state
@@ -151,12 +151,14 @@ def devicesChangeHandler(evt) {
     Boolean someOn = false
     for (device in allOffSwitches) {
         if (device.value.currentValue('switch') == 'on') {
-            virtualSwitch.markAsOn()
+            logDebug "Found one device that is on: ${device.value}"
             someOn = true
             break
         }
     }
-    if (!someOn) {
+    if (someOn) {
+        virtualSwitch.markAsOn()
+    } else {
         virtualSwitch.markAsOff()
     }
 }

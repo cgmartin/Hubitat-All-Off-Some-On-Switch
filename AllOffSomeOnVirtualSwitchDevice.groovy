@@ -1,6 +1,6 @@
 /**
  * All Off Some On Switch (Virtual Device)
- * NOTE: Do not use this without the All Off Some On Switch applications!
+ * NOTE: Do not use this without the 'All Off Some On Switch' applications!
  *
  * Copyright 2022 Christopher Martin
  *
@@ -18,7 +18,11 @@ import groovy.transform.Field
 @Field static String EVENT_TYPE_SWITCH = 'switch'
 
 metadata {
-    definition(name: 'All Off Some On Virtual Switch', namespace: 'cgmartin', author: 'Christopher Martin') {
+    definition(
+        name: 'All Off Some On Virtual Switch',
+        namespace: 'cgmartin',
+        author: 'Christopher Martin'
+    ) {
         capability 'Switch' // "on", "off"
         command 'markAsOn'
         command 'markAsOff'
