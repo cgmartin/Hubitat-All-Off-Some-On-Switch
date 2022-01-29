@@ -4,16 +4,16 @@
     "author": "Christopher Martin",
     "version": "1.0",
     "dateReleased": "2022-01-29",
-    "licenseFile": "https://raw.githubusercontent.com/cgmartin/Hubitat-All-Off-Some-On-Switch/master/LICENSE",
+    "licenseFile": "https://raw.githubusercontent.com/cgmartin/Hubitat-All-Off-Some-On-Switch/main/LICENSE",
     "releaseNotes": "Initial release.",
     "communityLink": "",
-    "documentationLink": "https://github.com/cgmartin/Hubitat-All-Off-Some-On-Switch/master/README.md",
+    "documentationLink": "https://github.com/cgmartin/Hubitat-All-Off-Some-On-Switch/main/README.md",
     "apps": [
         {
             "id": "a3d1ecfb-70c8-43e6-9fe3-97e9392ed565",
             "name": "All Off Some On Switch",
             "namespace": "cgmartin",
-            "location": "https://raw.githubusercontent.com/cgmartin/Hubitat-All-Off-Some-On-Switch/master/AllOffSomeOnSwitchAppParent.groovy",
+            "location": "https://raw.githubusercontent.com/cgmartin/Hubitat-All-Off-Some-On-Switch/main/AllOffSomeOnSwitchAppParent.groovy",
             "required": true,
             "oauth": false
         },
@@ -21,7 +21,7 @@
             "id": "dff931a8-72f2-446d-b1a9-6ddbb4f525f9",
             "name": "All Off Some On Switch Child",
             "namespace": "cgmartin",
-            "location": "https://raw.githubusercontent.com/cgmartin/Hubitat-All-Off-Some-On-Switch/master/AllOffSomeOnSwitchAppChild.groovy",
+            "location": "https://raw.githubusercontent.com/cgmartin/Hubitat-All-Off-Some-On-Switch/main/AllOffSomeOnSwitchAppChild.groovy",
             "required": true,
             "oauth": false
         }
@@ -31,7 +31,7 @@
             "id": "ba33457a-ef4e-4a7f-ba9f-c633662e2bd2",
             "name": "All Off Some On Virtual Switch",
             "namespace": "cgmartin",
-            "location": "https://raw.githubusercontent.com/cgmartin/Hubitat-All-Off-Some-On-Switch/master/AllOffSomeOnVirtualSwitchDevice.groovy",
+            "location": "https://raw.githubusercontent.com/cgmartin/Hubitat-All-Off-Some-On-Switch/main/AllOffSomeOnVirtualSwitchDevice.groovy",
             "required": true
         }
     ]
