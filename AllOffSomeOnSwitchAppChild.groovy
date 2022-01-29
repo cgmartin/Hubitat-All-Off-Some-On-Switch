@@ -60,13 +60,13 @@ def pageStart() {
     }
 }
 
-def pageSecond() {
+def pageNext() {
     def switchOptions = [:]
     allOffSwitches.each {
         switchOptions[it.id] = it.displayName
     }
 
-    dynamicPage(name: 'pageSecond', title: '', install: true, uninstall: true) {
+    dynamicPage(name: PAGE_NEXT, title: '', install: true, uninstall: true) {
         section {
             input(
                 name: 'someOnSwitches',
@@ -101,9 +101,9 @@ def pageSecond() {
 def installed() {
     log.info "Installed with settings: ${settings}"
     addChildDevice(
-        'hubitat',
-        'Virtual Switch',
-        "AOSOS_${app.id}",
+        'cgmartin',
+        'All Off Some On Virtual Switch',
+        "AOSOS_${app.getId()}",
         null,
         [
             name: 'All Off Some On Virtual Switch',
@@ -131,7 +131,7 @@ def updated() {
 def initialize() {
     log.info "There are ${childDevices.size()} child devices"
 
-    def virtualSwitch = getChildDevice("AOSOS_${app.id}")
+    def virtualSwitch = getChildDevice("AOSOS_${app.getId()}")
     app.updateLabel(virtualSwitch.displayName) // Use the device name
 
     subscribe(allOffSwitches, EVENT_TYPE_SWITCH, devicesChangeHandler)
@@ -145,13 +145,13 @@ def devicesChangeHandler(evt) {
     if (evt != null) {
         logDebug "${evt.device} changed to ${evt.value}"
     }
-    def virtualSwitch = getChildDevice("AOSOS_${app.id}")
+    def virtualSwitch = getChildDevice("AOSOS_${app.getId()}")
     logDebug "virtualSwitch state: ${virtualSwitch.currentValue('switch')}"
 
     Boolean someOn = false
     for (device in allOffSwitches) {
-        if (device.value.currentValue('switch') == 'on') {
-            logDebug "Found one device that is on: ${device.value}"
+        if (device.currentValue('switch') == 'on') {
+            logDebug "Found one device that is on: ${device}"
             someOn = true
             break
         }

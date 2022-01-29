@@ -51,7 +51,7 @@ def initialize() {
 }
 
 def installCheck() {
-    state.appInstalled = app.installationState()
+    state.appInstalled = app.getInstallationState()
     if (state.appInstalled != APP_INSTALLED_STATE_COMPLETE) {
         section { paragraph "Please hit 'Done' to install '${app.label}' parent app" }
     }
@@ -73,14 +73,14 @@ def mainPage() {
 
         if (state.appInstalled == APP_INSTALLED_STATE_COMPLETE) {
             section("<h2 style='font-weight: bold'>${app.label}</h2>") {
-                paragraph app.description
+                paragraph 'Create a virtual switch to turn off an entire group of devices (but only turn on some).'
             }
-            section('All Off Some On Switches:') {
+            section('<b>Manage your virtual switches:</b>') {
                 app(
                     name: 'anyOpenApp',
-                    namespace: app.namespace,
+                    namespace: 'cgmartin',
                     appName: 'All Off Some On Switch Child',
-                    title: "Add a new 'All Off Some On Switch'",
+                    title: 'Add a new "All Off Some On Switch"',
                     multiple: true
                 )
             }
