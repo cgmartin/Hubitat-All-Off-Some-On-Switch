@@ -2,7 +2,7 @@
     "packageName": "All Off Some On Switch",
     "minimumHEVersion": "2.2.1",
     "author": "Christopher Martin",
-    "version": "1.0",
+    "version": "0.1",
     "dateReleased": "2022-01-29",
     "licenseFile": "https://raw.githubusercontent.com/cgmartin/Hubitat-All-Off-Some-On-Switch/main/LICENSE",
     "releaseNotes": "Initial release.",
