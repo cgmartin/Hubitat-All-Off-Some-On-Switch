@@ -17,6 +17,7 @@ import groovy.transform.Field
 @Field static String PAGE_START = 'pageStart'
 @Field static String PAGE_NEXT = 'pageNext'
 @Field static String EVENT_TYPE_SWITCH = 'switch'
+@Field static int RESUBSCRIBE_PAUSE_MS = 1000
 
 definition(
     namespace: 'cgmartin',
@@ -139,54 +140,74 @@ def initialize() {
 }
 
 // This handler will be called whenever any of the wrapped devices change.
-// Determine the state of the virtual switch, wether it should be on (if ANY are on),
-// or if it should be off (if ALL are off).
+// Determine the state of the virtual switch...
+//   whether it should be on (if ANY are on),
+//   or if it should be off (if ALL are off).
 def devicesChangeHandler(evt) {
     if (evt != null) {
         logDebug "${evt.device} changed to ${evt.value}"
     }
     def virtualSwitch = getChildDevice("AOSOS_${app.getId()}")
-    logDebug "virtualSwitch state: ${virtualSwitch.currentValue('switch')}"
+    def virtualSwitchState = virtualSwitch.currentValue('switch')
+    logDebug "Update the virtualSwitch state? ${virtualSwitch} = ${virtualSwitchState}"
 
     Boolean someOn = false
     for (device in allOffSwitches) {
         if (device.currentValue('switch') == 'on') {
-            logDebug "Found one device that is on: ${device}"
+            logDebug "Found one device that is ON: ${device}"
             someOn = true
             break
         }
     }
-    if (someOn) {
+    if (someOn && virtualSwitchState == 'off') {
         virtualSwitch.markAsOn()
-    } else {
+    } else if (!someOn && virtualSwitchState == 'on') {
         virtualSwitch.markAsOff()
     }
 }
 
+// Loop thru all devices in the "All Off" group,
+// Check if the device is a subset of the "Some On" group,
+// Turn on the device if it is not already on.
+// Pause for metering, if set.
 def turnOnDevices() {
-    logDebug 'turnOnDevices()'
+    logDebug "turnOnDevices() ${someOnSwitches}"
+    Boolean pauseForMetering = false
+
     for (device in allOffSwitches) {
-        logDebug "device = #${device.id} ${device}"
-        logDebug "someOnSwitches = ${someOnSwitches}"
-        if (someOnSwitches.contains(device.id)) {
-            if (device.currentValue('switch') == 'off') {
+        Boolean isDeviceInOnGroup = someOnSwitches.contains(device.id)
+        logDebug "Is device in ON group? #${device.id} ${device} = ${isDeviceInOnGroup}"
+        if (isDeviceInOnGroup) {
+            // Device is in the On group.
+            def devSwitchState = device.currentValue('switch')
+            logDebug "Should turn ON device? #${device.id} ${device} = ${devSwitchState}"
+            if (devSwitchState == 'off') {
+                // Device should turn on
+                if (pauseForMetering) { pause(meter) }
+                logDebug "Turning on device: #${device.id} ${device}"
                 device.on()
-                if (meter) {
-                    pause(meter)
-                }
+                if (meter) { pauseForMetering = true }
             }
         }
     }
 }
 
+// Loop thru all devices in the "All Off" group,
+// Turn off the device if it is not already off.
+// Pause for metering, if set.
 def turnOffDevices() {
-    logDebug 'turnOffDevices()'
+    logDebug "turnOffDevices() ${allOffSwitches}"
+    Boolean pauseForMetering = false
+
     for (device in allOffSwitches) {
-        if (device.currentValue('switch') == 'on') {
+        def devSwitchState = device.currentValue('switch')
+        logDebug "Should turn OFF device? #${device.id} ${device} = ${devSwitchState}"
+        if (devSwitchState == 'on') {
+            // Device should turn off
+            if (pauseForMetering) { pause(meter) }
+            logDebug "Turning off device: #${device.id} ${device}"
             device.off()
-            if (meter) {
-                pause(meter)
-            }
+            if (meter) { pauseForMetering = true }
         }
     }
 }
