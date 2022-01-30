@@ -1,0 +1,17 @@
+CHANGELOG
+
+v1.3 (2022-01-30): 
+- Changed to a single dynamic settings page.
+- Metering and send events optimization.
+- Extra debug logging.
+- Fixed: device name not updating upon app settings change.
+
+v1.2 (2022-01-29): 
+- Loop on/off optimization.
+
+v1.1 (2022-01-29): 
+- Misc UX enhancements.
+
+v1.0 (2022-01-29): 
+- Initial working release.
+- Tested on HE v2.3.0.124.
