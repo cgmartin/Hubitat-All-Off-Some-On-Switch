@@ -14,6 +14,7 @@
  */
 import groovy.transform.Field
 
+@Field static String VIRTUAL_DEVICE_NAME = 'All Off Some On Virtual Switch'
 @Field static String PAGE_MAIN = 'pageMain'
 @Field static String EVENT_TYPE_SWITCH = 'switch'
 @Field static int RESUBSCRIBE_PAUSE_MS = 1000
@@ -103,11 +104,11 @@ def installed() {
     log.info "Installed with settings: ${settings}"
     addChildDevice(
         'cgmartin',
-        'All Off Some On Virtual Switch',
+        VIRTUAL_DEVICE_NAME,
         "AOSOS_${app.getId()}",
         null,
         [
-            name: 'All Off Some On Virtual Switch',
+            name: VIRTUAL_DEVICE_NAME,
             label: app.label,
             completedSetup: true,
             isComponent: true
@@ -128,7 +129,10 @@ def updated() {
 
     // Update device name to match app name
     def virtualSwitch = getChildDevice("AOSOS_${app.getId()}")
-    if (virtualSwitch) { virtualSwitch.name = app.label }
+    if (virtualSwitch) {
+        virtualSwitch.name = VIRTUAL_DEVICE_NAME
+        virtualSwitch.label = app.label
+    }
 
     unsubscribe()
     initialize()
@@ -138,7 +142,7 @@ def initialize() {
     log.info "There are ${childDevices.size()} child devices"
 
     def virtualSwitch = getChildDevice("AOSOS_${app.getId()}")
-    app.updateLabel(virtualSwitch.displayName) // Use the device name
+    app.updateLabel(virtualSwitch.label) // Use the device name
 
     subscribe(allOffSwitches, EVENT_TYPE_SWITCH, devicesChangeHandler)
     devicesChangeHandler(null) // sync state
