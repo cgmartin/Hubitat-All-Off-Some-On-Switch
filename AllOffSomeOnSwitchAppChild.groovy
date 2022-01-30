@@ -165,10 +165,26 @@ def devicesChangeHandler(evt) {
 
 def turnOnDevices() {
     logDebug 'turnOnDevices()'
+    for (device in allOffSwitches) {
+        logDebug "device = #${device.id} ${device}"
+        logDebug "someOnSwitches = ${someOnSwitches}"
+        if (someOnSwitches.contains(device.id)) {
+            device.on()
+            if (meter) {
+                pause(meter)
+            }
+        }
+    }
 }
 
 def turnOffDevices() {
     logDebug 'turnOffDevices()'
+    for (device in allOffSwitches) {
+        device.off()
+        if (meter) {
+            pause(meter)
+        }
+    }
 }
 
 def logDebug(msg) {
