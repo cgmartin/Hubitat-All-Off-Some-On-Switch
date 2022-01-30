@@ -2,10 +2,10 @@
     "packageName": "All Off Some On Switch",
     "minimumHEVersion": "2.2.1",
     "author": "Christopher Martin",
-    "version": "1.1",
+    "version": "1.2",
     "dateReleased": "2022-01-29",
     "licenseFile": "https://raw.githubusercontent.com/cgmartin/Hubitat-All-Off-Some-On-Switch/main/LICENSE",
-    "releaseNotes": "v1.1 : Misc UX enhancements.\nv1.0 : Initial working release. Tested on HE v2.3.0.124.",
+    "releaseNotes": "v1.2 : Loop on/off optimization\nv1.1 : Misc UX enhancements.\nv1.0 : Initial working release. Tested on HE v2.3.0.124.",
     "communityLink": "",
     "documentationLink": "https://github.com/cgmartin/Hubitat-All-Off-Some-On-Switch/main/README.md",
     "apps": [

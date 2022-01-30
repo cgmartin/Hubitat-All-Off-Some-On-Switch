@@ -169,9 +169,11 @@ def turnOnDevices() {
         logDebug "device = #${device.id} ${device}"
         logDebug "someOnSwitches = ${someOnSwitches}"
         if (someOnSwitches.contains(device.id)) {
-            device.on()
-            if (meter) {
-                pause(meter)
+            if (device.currentValue('switch') == 'off') {
+                device.on()
+                if (meter) {
+                    pause(meter)
+                }
             }
         }
     }
@@ -180,9 +182,11 @@ def turnOnDevices() {
 def turnOffDevices() {
     logDebug 'turnOffDevices()'
     for (device in allOffSwitches) {
-        device.off()
-        if (meter) {
-            pause(meter)
+        if (device.currentValue('switch') == 'on') {
+            device.off()
+            if (meter) {
+                pause(meter)
+            }
         }
     }
 }
