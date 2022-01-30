@@ -125,6 +125,11 @@ def uninstalled() {
 
 def updated() {
     log.info "Updated with settings: ${settings}"
+
+    // Update device name to match app name
+    def virtualSwitch = getChildDevice("AOSOS_${app.getId()}")
+    if (virtualSwitch) { virtualSwitch.name = app.label }
+
     unsubscribe()
     initialize()
 }
