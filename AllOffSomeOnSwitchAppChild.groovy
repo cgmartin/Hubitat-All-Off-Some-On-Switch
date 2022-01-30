@@ -14,8 +14,7 @@
  */
 import groovy.transform.Field
 
-@Field static String PAGE_START = 'pageStart'
-@Field static String PAGE_NEXT = 'pageNext'
+@Field static String PAGE_MAIN = 'pageMain'
 @Field static String EVENT_TYPE_SWITCH = 'switch'
 @Field static int RESUBSCRIBE_PAUSE_MS = 1000
 
@@ -32,21 +31,28 @@ definition(
 )
 
 preferences {
-    page(name: PAGE_START)
-    page(name: PAGE_NEXT)
+    page(name: PAGE_MAIN)
 }
 
-def pageStart() {
-    dynamicPage(name: PAGE_START, title: '', nextPage: PAGE_NEXT, install: false, uninstall: true) {
+def pageMain() {
+    dynamicPage(
+        name: PAGE_MAIN,
+        title: '<b>New All Off Some On Switch</b>',
+        install: true,
+        uninstall: true
+    ) {
         section {
             input(
                 name: 'appName',
                 type: 'text',
                 title: 'Name the virtual switch device',
-                submitOnChange: true
+                submitOnChange: true,
+                required: true
             )
             if (appName) {
                 app.updateLabel(appName)
+            } else {
+                app.updateLabel('New All Off Some On Switch')
             }
 
             input(
@@ -55,20 +61,14 @@ def pageStart() {
                 title: 'Switches to turn OFF',
                 description: 'Select the devices that should ALL turn OFF as a group.',
                 multiple: true,
-                required: true
+                required: true,
+                submitOnChange: true
             )
-        }
-    }
-}
 
-def pageNext() {
-    def switchOptions = [:]
-    allOffSwitches.each {
-        switchOptions[it.id] = it.displayName
-    }
-
-    dynamicPage(name: PAGE_NEXT, title: '', install: true, uninstall: true) {
-        section {
+            def switchOptions = [:]
+            allOffSwitches.each {
+                switchOptions[it.id] = it.displayName
+            }
             input(
                 name: 'someOnSwitches',
                 type: 'enum',
@@ -84,8 +84,8 @@ def pageNext() {
                 name: 'meter',
                 type: 'number',
                 title: 'Use metering (in milliseconds)',
+                description: 'Set to 50 or 75 ms if switches not always turning off (large groups of devices)',
                 defaultValue: 0,
-                submitOnChange: true,
                 width: 4
             )
             input(
