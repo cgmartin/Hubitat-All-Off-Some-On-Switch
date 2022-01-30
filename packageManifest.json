@@ -5,7 +5,7 @@
     "version": "1.0",
     "dateReleased": "2022-01-29",
     "licenseFile": "https://raw.githubusercontent.com/cgmartin/Hubitat-All-Off-Some-On-Switch/main/LICENSE",
-    "releaseNotes": "1.0 - Initial working release.\n0.x releases: In progress - not operational. Working towards an initial release.",
+    "releaseNotes": "1.0: Initial working release.\n0.x releases: In progress - not operational. Working towards an initial release.",
     "communityLink": "",
     "documentationLink": "https://github.com/cgmartin/Hubitat-All-Off-Some-On-Switch/main/README.md",
     "apps": [
