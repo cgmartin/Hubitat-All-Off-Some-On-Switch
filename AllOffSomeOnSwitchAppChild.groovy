@@ -83,7 +83,7 @@ def pageNext() {
                 name: 'meter',
                 type: 'number',
                 title: 'Use metering (in milliseconds)',
-                defaultValue: 50,
+                defaultValue: 0,
                 submitOnChange: true,
                 width: 4
             )
@@ -92,7 +92,7 @@ def pageNext() {
                 name: 'enableDebugLogging',
                 title: 'Enable Debug Logging?',
                 required: true,
-                defaultValue: true
+                defaultValue: false
             )
         }
     }

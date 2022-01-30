@@ -73,14 +73,14 @@ def mainPage() {
 
         if (state.appInstalled == APP_INSTALLED_STATE_COMPLETE) {
             section("<h2 style='font-weight: bold'>${app.label}</h2>") {
-                paragraph 'Create a virtual switch to turn off an entire group of devices (but only turn on some).'
+                paragraph 'Create a virtual switch to turn off an entire group of devices, and to only turn on some.'
             }
             section('<b>Manage your virtual switches:</b>') {
                 app(
                     name: 'anyOpenApp',
                     namespace: 'cgmartin',
                     appName: 'All Off Some On Switch Child',
-                    title: 'Add a new "All Off Some On Switch"',
+                    title: '<b>Add a new</b> "All Off Some On Switch"',
                     multiple: true
                 )
             }
