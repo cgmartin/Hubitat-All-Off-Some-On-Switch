@@ -192,10 +192,10 @@ def turnOnDevices() {
             logDebug "Should turn ON device? #${device.id} ${device} = ${devSwitchState}"
             if (devSwitchState == 'off') {
                 // Device should turn on
-                if (pauseForMetering) { pause(meter) }
+                if (pauseForMetering) { pauseExecution(meter) }
                 logDebug "Turning on device: #${device.id} ${device}"
                 device.on()
-                if (meter) { pauseForMetering = true }
+                if (meter > 0) { pauseForMetering = true }
             }
         }
     }
@@ -213,10 +213,10 @@ def turnOffDevices() {
         logDebug "Should turn OFF device? #${device.id} ${device} = ${devSwitchState}"
         if (devSwitchState == 'on') {
             // Device should turn off
-            if (pauseForMetering) { pause(meter) }
+            if (pauseForMetering) { pauseExecution(meter) }
             logDebug "Turning off device: #${device.id} ${device}"
             device.off()
-            if (meter) { pauseForMetering = true }
+            if (meter > 0) { pauseForMetering = true }
         }
     }
 }

@@ -1,11 +1,11 @@
 {
     "packageName": "All Off Some On Switch",
-    "minimumHEVersion": "2.2.1",
+    "minimumHEVersion": "2.3.0",
     "author": "Christopher Martin",
-    "version": "1.3",
-    "dateReleased": "2022-01-30",
+    "version": "1.4",
+    "dateReleased": "2022-01-31",
     "licenseFile": "https://raw.githubusercontent.com/cgmartin/Hubitat-All-Off-Some-On-Switch/main/LICENSE",
-    "releaseNotes": "CHANGELOG\r\n\r\nv1.3 (2022-01-30): \r\n- Changed to a single dynamic settings page.\r\n- Metering and send events optimization.\r\n- Extra debug logging.\r\n- Fixed: device name not updating upon app settings change.\r\n\r\nv1.2 (2022-01-29): \r\n- Loop on\/off optimization.\r\n\r\nv1.1 (2022-01-29): \r\n- Misc UX enhancements.\r\n\r\nv1.0 (2022-01-29): \r\n- Initial working release.\r\n- Tested on HE v2.3.0.124.",
+    "releaseNotes": "CHANGELOG\nv1.4 (2022-01-31):\n- Fixed: change pause to pauseExecution\n\nv1.3 (2022-01-30): \n- Changed to a single dynamic settings page.\n- Metering and send events optimization.\n- Extra debug logging.\n- Fixed: device name not updating upon app settings change.\n\nv1.2 (2022-01-29): \n- Loop on/off optimization.\n\nv1.1 (2022-01-29): \n- Misc UX enhancements.\n\nv1.0 (2022-01-29): \n- Initial working release.\n- Tested on HE v2.3.0.124.\n",
     "communityLink": "",
     "documentationLink": "https://github.com/cgmartin/Hubitat-All-Off-Some-On-Switch/main/README.md",
     "apps": [

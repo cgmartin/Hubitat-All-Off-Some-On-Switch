@@ -1,4 +1,6 @@
 CHANGELOG
+v1.4 (2022-01-31):
+- Fixed: change pause to pauseExecution
 
 v1.3 (2022-01-30): 
 - Changed to a single dynamic settings page.

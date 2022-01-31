@@ -15,7 +15,7 @@
 ## Release Process:
 
 1. Test code changes locally in HE UI via `Developer` -> `Apps Code`
-2. Choose new release version number ([Semver](https://semver.org/))
+2. Choose new release version number (major = breaking change, minor = compatible change)
 3. Update CHANGELOG.txt with changes
 4. Update packageManifest.json with new version number 
 5. Update packageManifest.json releaseNotes with encoded CHANGELOG.txt: `cat CHANGELOG.txt | jq -Rs .`
