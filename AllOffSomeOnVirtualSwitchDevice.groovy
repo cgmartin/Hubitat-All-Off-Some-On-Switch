@@ -23,6 +23,9 @@ metadata {
         namespace: 'cgmartin',
         author: 'Christopher Martin'
     ) {
+        // Docs on capabilities:
+        // https://docs.hubitat.com/index.php?title=Driver_Capability_List
+
         capability 'Switch' // "on", "off"
         command 'markAsOn'
         command 'markAsOff'
