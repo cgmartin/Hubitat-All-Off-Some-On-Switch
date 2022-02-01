@@ -56,7 +56,7 @@ def installCheck() {
         section { paragraph "Please hit 'Done' to install '${app.label}' parent app" }
     }
     else {
-        log.info 'Parent Installed OK'
+        log.info "Parent app '${app.label}' installed OK"
     }
 }
 
